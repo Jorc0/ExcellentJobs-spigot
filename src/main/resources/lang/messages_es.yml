@@ -10,54 +10,57 @@ Job:
       AlreadyHired: <lgray>Ya estás contratado para el trabajo de <lred>%job_name%</lred>!</lgray>
       StateLimit: <lgray>No puedes tener más de <lred>%amount% %state%</lred> trabajos!</lgray>
       GeneralLimit: <lgray>No puedes tener más trabajos!</lgray>
+      Cooldown: <gray>Puedes unirte al trabajo <red>%job_name%</red> nuevamente en <red>%time%</red></gray>
     Success:
-      - <output:"titles:20:60:20"><sound:"entity.player.levelup"><lgreen><b>Contratado!</b></lgreen>
-      - <lgray>Has sido contratado como <lgreen>%job_name%</lgreen>!</lgray>
+    - '[sound="minecraft:entity.player.levelup;0.8;1.0",title_times="20:60:20",type="title"]<lgreen><b>Contratado!</b></lgreen>'
+    - <lgray>Has sido contratado como <lgreen>%job_name%</lgreen>!</lgray>
+    NotJoinable: <gray>El trabajo <soft_yellow>%job_name%</soft_yellow> no acepta nuevos miembros actualmente.</gray>
   Leave:
     Success:
-      - <output:"titles:20:60:20"><sound:"block.wooden_door.close"><lgreen><b>Trabajo Abandonado</b></lgreen>
-      - <lgray>Has renunciado al trabajo de <lgreen>%job_name%</lgreen>!</lgray>
+    - '[sound="minecraft:block.wooden_door.close;0.8;1.0",title_times="20:60:20",type="title"]<lgreen><b>Trabajo Abandonado</b></lgreen>'
+    - <lgray>Has renunciado al trabajo de <lgreen>%job_name%</lgreen>!</lgray>
     Error:
       NotJoined: <lgray>No estás empleado en el trabajo de <lred>%job_name%</lred>!</lgray>
       NotAllowed: <lgray>No puedes dejar el trabajo de <lred>%job_name%</lred>!</lgray>
+      Cooldown: <gray>Puedes dejar el trabajo <red>%job_name%</red> en <red>%time%</red></gray>
   Reset:
     Notify:
-      - <output:"titles:20:60:20"><sound:"entity.zombie.break_wooden_door"><lgreen><b>Trabajo Reestablecido!</b></lgreen>
-      - <lgray>Todo el progreso como <lgreen>%job_name%</lgreen> se ha reiniciado!</lgray>
+    - '[sound="minecraft:entity.zombie.break_wooden_door;0.8;1.0",title_times="20:60:20",type="title"]<lgreen><b>Trabajo Reestablecido!</b></lgreen>'
+    - <lgray>Todo el progreso como <lgreen>%job_name%</lgreen> se ha reiniciado!</lgray>
   Payment:
     Receipt:
       General:
-        - <noprefix>
-        - ' '
-        - <lyellow><b>Pago por trabajo durante <lgreen>%time%</lgreen>:</b></lyellow>
-        - ' '
-        - '%entry%'
-        - ' '
-        - '<lorange><b>Total: </b><lgreen>%total%</lgreen></lorange>'
-        - ' '
+      - <noprefix>
+      - ' '
+      - <lyellow><b>Pago por trabajo durante <lgreen>%time%</lgreen>:</b></lyellow>
+      - ' '
+      - '%entry%'
+      - ' '
+      - '<lorange><b>Total: </b><lgreen>%total%</lgreen></lorange>'
+      - ' '
       Entry:
         Job: <lyellow><b>%job_name%</b> <hover:show_text:'%currency%'>[<lgreen>Detalles</lgreen>]</hover></lyellow>
         Currency: <lgreen>%amount%</lgreen>
+    Notify: '[prefix="false"]<gray><green>[$]</green> Has recibido pago por el trabajo de <white>%job_name%</white>: <green>%amount%</green></gray>'
   XP:
     Gain: <lgray>Has obtenido <lyellow>%amount% EXP</lyellow> por el trabajo de <lyellow>%job_name%</lyellow>.</lgray>
     Lose: <lgray>Has perdido<lred>%amount% EXP</lred> del trabajo de <lred>%job_name%</lred>.</lgray>
   Level:
     Up:
-      - <output:"titles:20:60:20"><sound:"entity.player.levelup"><lgreen><b>+1 Nivel del Trabajo!</b></lgreen>
-      - <lgray><lgreen>%job_name%</lgreen> es ahora nivel <lgreen>%job_level%</lgreen>!</lgray>
+    - '[sound="minecraft:entity.player.levelup;0.8;1.0",title_times="20:60:20",type="title"]<lgreen><b>+1 Nivel del Trabajo!</b></lgreen>'
+    - <lgray><lgreen>%job_name%</lgreen> es ahora nivel <lgreen>%job_level%</lgreen>!</lgray>
     Down:
-      - <output:"titles:20:60:20"><sound:"entity.iron_golem.death"><lred><b>-1 Nivel del Trabajo!</b></lred>
-      - <lgray><lred>%job_name%</lred> es ahora nivel <lred>%job_level%</lred>!</lgray>
+    - '[sound="minecraft:entity.iron_golem.death;0.8;1.0",title_times="20:60:20",type="title"]<lred><b>-1 Nivel del Trabajo!</b></lred>'
+    - <lgray><lred>%job_name%</lred> es ahora nivel <lred>%job_level%</lred>!</lgray>
     Rewards:
       List:
-        - <noprefix>
-        - ' '
-        - <lyellow><b>Recompensas por Nivel:</b></lyellow>
-        - <dgray>Coloca el cursor sobre el nombre de<d/gray>
-        - <dgray>la recompensa para ver los detalles.</dgray>
-        - ' '
-        - '%entry%'
-        - ' '
+      - '[prefix="false"]'
+      - ' '
+      - <lyellow><b>Recompensas por Nivel:</b></lyellow>
+      - <dgray>Coloca el cursor sobre el nombre de<d/gray>
+      - <dgray>la recompensa para ver los detalles.</dgray>
+      - ' '
+      - '%entry%'
       Entry: <lyellow>✔ <hover:show_text:'<lgray>%reward_description%</lgray>'><lgray>%reward_name%</lgray></hover></lyellow>
   Limit:
     XP:
@@ -119,10 +122,29 @@ Job:
       DisplayName: Remover Encantamiento
     collect_honey:
       DisplayName: Recolectar Miel
+  Priority:
+    Changed: '[sound="minecraft:entity.player.levelup;0.8;1.0"]<gray>Has cambiado la prioridad del trabajo <yellow>%job_name%</yellow> a <yellow>%job_state%</yellow>.</gray>'
+  Rewards:
+    Notify:
+    - '[prefix="false"]'
+    - ' '
+    - <soft_yellow><b><u>Notificación de Trabajo</u></b></soft_yellow>
+    - ' '
+    - <gray>Tienes <soft_yellow>%amount%</soft_yellow> recompensas sin reclamar en el trabajo <soft_yellow>%job_name%</soft_yellow>.</gray>
+    - <gray>Haz clic <click:run_command:"/jobs levels %job_id%"><soft_yellow>[Aquí]</soft_yellow></click> para reclamar ahora!</gray>
+    - ' '
 Command:
   Argument:
     Name:
       Zone: zona
+      Currency: currency
+      Job: job
+      JobState: job state
+      XPMultiplier: xp mult
+      PayMultiplier: pay mult
+      Duration: duration
+      Page: page
+      Action: action
   Zone:
     Desc: Comandos de Zona.
     Create:
@@ -136,12 +158,11 @@ Command:
     Usage: '[jugador]'
     Display:
       Info:
-        - <noprefix>
-        - ' '
-        - <lyellow><orange>%player_name%</orange>'s Estadísticas del Trabajo:</lyellow>
-        - ' '
-        - '%entry%'
-        - ' '
+      - '[prefix="false"]'
+      - ' '
+      - <lyellow><orange>%player_name%</orange>'s Estadísticas del Trabajo:</lyellow>
+      - ' '
+      - '%entry%'
       Job: '<lgray><orange>▪ </orange>%job_name%:   Nivel: <orange>%job_level%</orange>, EXP: <orange>%job_xp%</orange>/<orange>%job_xp_max%</orange></lgray>'
   Info:
     Display:
@@ -154,18 +175,20 @@ Command:
     Create:
       Desc: Crear booster personal.
       Usage: <jugador> <booster> <duración> [-s]
-      Done: <lgray>Se añadió el booster de trabajo <lyellow>%name%</lyellow> a<lyellow>%player_name%</lyellow> durante <lyellow>%time%</lyellow></lgray>
+      Done:
+        Global: <gray>Se añadió un booster global de <yellow>%booster_xp_percent% EXP</yellow> <yellow>%booster_income_percent% Pago</yellow> para trabajos <gray>(<white>%time%</white>)</gray></gray>
+        Personal: <gray>Se añadió un booster personal de <yellow>%booster_xp_percent% EXP</yellow> <yellow>%booster_income_percent% Pago</yellow> para el trabajo <yellow>%job_name%</yellow> de <yellow>%player_name%</yellow> <gray>(<white>%time%</white>)</gray></gray>
       Notify:
         Info:
-          - <noprefix><sound:"block.note_block.bell">
-          - ' '
-          - <lgray>Has recibido un <lyellow><b>Booster de Trabajo</b></lyellow>!</lgray>
-          - ' '
-          - '<lgray><lyellow>▪ </lyellow>Trabajos: <lyellow>%job_name%</lyellow></lgray>'
-          - '<lgray><lyellow>▪ </lyellow>Bonus de EXP: <lyellow>+%xp_boost_percent%%</lyellow></lgray>'
-          - '%currency%'
-          - '<lgray><lred>▪ </lred>Duración: <lred>%time%</lred></lgray>'
-          - ' '
+        - <noprefix><sound:"block.note_block.bell">
+        - ' '
+        - <lgray>Has recibido un <lyellow><b>Booster de Trabajo</b></lyellow>!</lgray>
+        - ' '
+        - '<lgray><lyellow>▪ </lyellow>Trabajos: <lyellow>%job_name%</lyellow></lgray>'
+        - '<lgray><lyellow>▪ </lyellow>Bonus de EXP: <lyellow>+%xp_boost_percent%%</lyellow></lgray>'
+        - '%currency%'
+        - '<lgray><lred>▪ </lred>Duración: <lred>%time%</lred></lgray>'
+        - ' '
         Currency: '<lgray><lyellow>▪ </lyellow>%currency_name% Bonus: <lyellow>+%currency_boost_percent%%</lyellow></lgray>'
     Clear:
       Desc: Remover boosters personales.
@@ -173,6 +196,19 @@ Command:
       Done:
         Job: <lgray>Se removió el booster de trabajo personal de <lyellow>%job_name%</lyellow> del jugador <lyellow>%player_name%</lyellow>.</lgray>
         All: <lgray>Se removieron <lyellow>Todos</lyellow> los boosters de trabajo personales para <lyellow>%player_name%</lyellow>.</lgray>
+    Activate:
+      Desc: Activar booster global programado.
+      Done: <gray>¡Booster activado!</gray>
+    Info:
+      Desc: Ver nombres de boosters activos.
+    Removal:
+      Desc: Remover booster global o personal.
+    Remove:
+      Done:
+        Personal: <gray>Se desactivó el booster del trabajo <yellow>%job_name%</yellow> de <yellow>%player_name%</yellow>.</gray>
+        Global: <gray>Se desactivó el booster global de trabajos.</gray>
+      Error:
+        Nothing: <red>No hay ningún booster.</red>
   XP:
     Desc: Gestiona la experiencia del trabajo del jugador.
     Usage: <accción> <trabajo> <cantidad> [jugador] [-s]
@@ -222,36 +258,79 @@ Command:
     Usage: <trabajo> [página]
     Desc: Muestra los jugadores de mayor nivel laboral.
     List:
-      - <noprefix>
-      - ' '
-      - <lyellow><b>%job_name% Top Niveles:</b></lyellow>
-      - ' '
-      - '%entry%'
-      - ' '
-      - <lgray>Página <lyellow>%current%</lyellow> de <lyellow>%max%</lyellow>.</lgray>
-      - ' '
+    - '[prefix="false"]'
+    - ' '
+    - <lyellow><b>%job_name% Top Niveles:</b></lyellow>
+    - ' '
+    - '%entry%'
+    - ' '
+    - <lgray>Página <lyellow>%current%</lyellow> de <lyellow>%max%</lyellow>.</lgray>
     Entry: '<lgray><lyellow>%pos%. </lyellow>%player_name%: <lyellow>%amount%</lyellow> Niveles</lgray>'
+  Levels:
+    Desc: Navegar por los niveles de trabajo.
+  Boosters:
+    Desc: Ver todos los boosters actuales.
 Booster:
   Error:
     Invalid: <lred>Booster inválido!</lred>
   Notify:
     Global:
-      - <noprefix><sound:"block.note_block.bell">
-      - ''
-      - <lyellow>Booster de Trabajo Activado!</lyellow>
-      - '<lyellow>▪ <lgray>Trabajos: </lgray>%job_name%</lyellow>'
-      - '<lyellow>▪ <lgray>Bonus de EXP: </lgray>+%xp_boost_percent%%</lyellow>'
-      - '%currency%'
-      - '<lred>▪ <lgray>Duración: </lgray>%time%</lred>'
+    - <noprefix><sound:"block.note_block.bell">
+    - ''
+    - <lyellow>Booster de Trabajo Activado!</lyellow>
+    - '<lyellow>▪ <lgray>Trabajos: </lgray>%job_name%</lyellow>'
+    - '<lyellow>▪ <lgray>Bonus de EXP: </lgray>+%xp_boost_percent%%</lyellow>'
+    - '%currency%'
+    - '<lred>▪ <lgray>Duración: </lgray>%time%</lred>'
     Total:
-      - <noprefix>
-      - ''
-      - <lyellow>Hey! Hay un nuevo booster!</lyellow>
-      - '<lyellow>▪ <lgray>Trabajos: </lgray>%job_name%</lyellow>'
-      - '<lyellow>▪ <lgray>Bonus de EXP: </lgray>+%xp_boost_percent%%</lyellow>'
-      - '%currency%'
-      - '<lred>▪ <lgray>Duración: </lgray>%time%</lred>'
+    - <noprefix>
+    - ''
+    - <lyellow>Hey! Hay un nuevo booster!</lyellow>
+    - '<lyellow>▪ <lgray>Trabajos: </lgray>%job_name%</lyellow>'
+    - '<lyellow>▪ <lgray>Bonus de EXP: </lgray>+%xp_boost_percent%%</lyellow>'
+    - '%currency%'
+    - '<lred>▪ <lgray>Duración: </lgray>%time%</lred>'
   CurrencyLine: '<lyellow>▪ <lgray>%currency_name% Bonus: </lgray>+%currency_boost_percent%%</lyellow>'
+  Activated:
+    Global:
+    - '[prefix="false",sound="minecraft:block.note_block.bell;0.8;1.0"]'
+    - ' '
+    - <yellow><b>¡Booster de Trabajo Activado!</b></yellow>
+    - ' '
+    - <i><gray>¡Disponible para <white>todos los trabajos</white> y <white>todos los jugadores</white>!</gray></i>
+    - ' '
+    - '<yellow>✔ <gray>Bonus de EXP: </gray>%booster_xp_percent%</yellow>'
+    - '<yellow>✔ <gray>Bonus de Ingresos: </gray>%booster_income_percent%</yellow>'
+    - '<yellow>✔ <gray>Duración: </gray>%time%</yellow>'
+    - ' '
+    Personal:
+    - '[prefix="false",sound="minecraft:block.note_block.bell;0.8;1.0"]'
+    - ' '
+    - <yellow><b>¡Booster de Trabajo Recibido!</b></yellow>
+    - ' '
+    - <i><gray>Disponible <white>personalmente</white> para tu trabajo <white>%job_name%</white>.</gray></i>
+    - ' '
+    - '<yellow>✔ <gray>Bonus de EXP: </gray>%booster_xp_percent%</yellow>'
+    - '<yellow>✔ <gray>Bonus de Ingresos: </gray>%booster_income_percent%</yellow>'
+    - '<yellow>✔ <gray>Duración: </gray>%time%</yellow>'
+    - ' '
+  Expired:
+    Global: <gray>El booster global de trabajos ha expirado.</gray>
+    Personal: <gray>Tu booster del trabajo <yellow>%job_name%</yellow> ha expirado.</gray>
+  List:
+    Info:
+    - '[prefix="false"]'
+    - ' '
+    - <yellow><b>Boosters del Trabajo %job_name%:</b></yellow>
+    - ' '
+    - '<i><gray>Leyenda: <white>EXP</white> | <white>Ingresos</white></gray></i>'
+    - ' '
+    - '%entry%'
+    - ' '
+    - <yellow><b>Total:</b></yellow> %xp_bonus%<gray> | </gray>%income_bonus%
+    - ' '
+    Entry: '<yellow>✔ <gray>Booster %type%: </gray>%xp_boost%<gray> | </gray>%income_boost% <gray>(<white>%time%</white>)</gray></yellow>'
+    Nothing: <red>No tienes boosters activos para este trabajo.</red>
 Currency:
   Error:
     Invalid: <lred>Moneda inválida!</lred>
@@ -260,6 +339,14 @@ Error:
   Command:
     Argument:
       InvalidZone: <lgray><lred>%value%</lred> no es una zona válida!</lgray>
+      InvalidJob: <gray><red>%value%</red> no es un trabajo válido!</gray>
+      InvalidJobState: <gray><red>%value%</red> no es un estado de trabajo válido!</gray>
+      InvalidAction: <gray><red>%value%</red> no es una acción válida!</gray>
+  InvalidBooster: <red>¡Booster inválido!</red>
+  Error:
+    Command:
+      Argument:
+        InvalidCurrency: <gray><red>%value%</red> no es una moneda válida!</gray>
 SpecialOrder:
   Error:
     DisabledByServer: <gray>Las Ordenes Especiales están <lred>desactivadas</lred> en el servidor.</gray>
@@ -269,39 +356,39 @@ SpecialOrder:
     Cooldown: <gray>No puedes tomar otra Orden Especial hasta en <lred>%time%</lred></gray>
     NotEnoughMoney:
       Info:
-        - <lred>No puedes pagar la Orden Especial! Necesitas:</lred>
-        - '%entry%'
+      - <lred>No puedes pagar la Orden Especial! Necesitas:</lred>
+      - '%entry%'
       Entry: <lyellow>- %amount%</lyellow>
     Generation: <gray><lred>Ups!</lred> No se ha podido crear la Orden Especial.</gray>
   Taken:
     Info:
-      - <noprefix>
-      - ' '
-      - <lyellow>Has tomado una <orange>Orden Especial</orange> para el trabajo de <orange>%job_name%</orange>!</lyellow>
-      - ' '
-      - <orange><b>Objetivos:</b></orange>
-      - '%entry%'
-      - ' '
-      - <orange><b>Recompensas:</b></orange>
-      - '%reward%'
-      - ' '
-      - '<lyellow>Complétala en: <orange>%time%</orange></lyellow>'
-      - ' '
+    - <noprefix>
+    - ' '
+    - <lyellow>Has tomado una <orange>Orden Especial</orange> para el trabajo de <orange>%job_name%</orange>!</lyellow>
+    - ' '
+    - <orange><b>Objetivos:</b></orange>
+    - '%entry%'
+    - ' '
+    - <orange><b>Recompensas:</b></orange>
+    - '%reward%'
+    - ' '
+    - '<lyellow>Complétala en: <orange>%time%</orange></lyellow>'
+    - ' '
     Reward: <lyellow><orange>▪ </orange>%name%</lyellow>
     Entry: '<lyellow><orange>▪ </orange>%name%: <orange>x%amount%</orange> <lgreen><hover:show_text:''%entry%''>[Detalles]</hover></lgreen></lyellow>'
     Detail: '<white>%name%: </white><gray>x%amount%</gray>'
   Progress: '<output:"action_bar"><lyellow>(Orden Especial) <orange>%name%: </orange><white>%current%</white><gray>/</gray><white>%max%</white></lyellow>'
   Completed:
-    - <output:"titles:20:80:20"><sound:"entity.player.levelup"><lgreen><b>Orden Completada!</b></lgreen>
-    - <lgray>Has completado una Orden Especial del trabajo de <lgreen>%job_name%</lgreen>!</lgray>
+  - <output:"titles:20:80:20"><sound:"entity.player.levelup"><lgreen><b>Orden Completada!</b></lgreen>
+  - <lgray>Has completado una Orden Especial del trabajo de <lgreen>%job_name%</lgreen>!</lgray>
 Zone:
   Info:
     NotAvailable:
-      - <output:"action_bar">
-      - <lred>No puedes trabajar en esta zona actualmente!</lred>
+    - '[type="action_bar"]'
+    - <lred>No puedes trabajar en esta zona actualmente!</lred>
     NoPvP:
-      - <output:"action_bar">
-      - <lred>El PvP está desactivado en esta zona!</lred>
+    - '[type="action_bar"]'
+    - <lred>El PvP está desactivado en esta zona!</lred>
   Creation:
     Success: '<lgray>Zona de trabajo creada con éxito: <lgreen>%zone_name%</lgreen>!</lgray>'
     Info: <lgray>Selecciona dos esquinas y usa <lgreen>/jobzone create</lgreen> para crear una nueva zona.</lgray>
@@ -320,6 +407,7 @@ Editor:
       BlockSettings: <black>Ajustes de la Lista de Bloques</black>
       ModifierList: <black>Modificadores de la Zona</black>
       ModifierSettings: <black>Ajustes de los Modificadores</black>
+      Hours: <black>Horarios de Zona</black>
   Generic:
     Enter:
       Id: <lgray>Ingresa el <lgreen>[Identificador Único (ID)]</lgreen></lgray>
@@ -336,116 +424,116 @@ Editor:
     Object:
       Name: '<lyellow><b>%zone_name%<reset><gray> (ID: <white>%zone_id%</white>)</gray></b></lyellow>'
       Lore:
-        - <lgray>%zone_report%</lgray>
-        - ''
-        - '<lyellow>● <lgray>Trabajo Enlazado: </lgray>%zone_job_name%</lyellow>'
-        - ''
-        - <lyellow>[▶]</lyellow> <lgray>Click Izquierdo para <lyellow>editar</lyellow>.</lgray>
-        - <lyellow>[▶]</lyellow> <lgray>Arrastrar y soltar para <lyellow>establecer icono</lyellow>.</lgray>
-        - <lyellow>[▶]</lyellow> <lgray>Shift-Click Derecho para <lyellow>eliminar <lred>(no deshacer)</lred></lyellow>.</lgray>
+      - <lgray>%zone_report%</lgray>
+      - ''
+      - '<lyellow>● <lgray>Trabajo Enlazado: </lgray>%zone_job_name%</lyellow>'
+      - ''
+      - <lyellow>[▶]</lyellow> <lgray>Click Izquierdo para <lyellow>editar</lyellow>.</lgray>
+      - <lyellow>[▶]</lyellow> <lgray>Arrastrar y soltar para <lyellow>establecer icono</lyellow>.</lgray>
+      - <lyellow>[▶]</lyellow> <lgray>Shift-Click Derecho para <lyellow>eliminar <lred>(no deshacer)</lred></lyellow>.</lgray>
     Create:
       Name: <lyellow><b>Nueva Zona</b></lyellow>
       Lore:
-        - <lyellow>[▶]</lyellow> <lgray>Click para <lyellow>crear una zona</lyellow>.</lgray>
+      - <lyellow>[▶]</lyellow> <lgray>Click para <lyellow>crear una zona</lyellow>.</lgray>
     Selection:
       Name: <lyellow><b>Selección</b></lyellow>
       Lore:
-        - <lgray>%zone_inspect_zone_selection%</lgray>
-        - ''
-        - <lgray>Establece los límites de la zona (con forma de cubo).</lgray>
-        - ''
-        - <lyellow>[▶]</lyellow> <lgray>Click para obtener la <lyellow>herramienta de selección</lyellow>.</lgray>
+      - <lgray>%zone_inspect_zone_selection%</lgray>
+      - ''
+      - <lgray>Establece los límites de la zona (con forma de cubo).</lgray>
+      - ''
+      - <lyellow>[▶]</lyellow> <lgray>Click para obtener la <lyellow>herramienta de selección</lyellow>.</lgray>
     Name:
       Name: <lyellow><b>Nombre Visible</b></lyellow>
       Lore:
-        - '<lyellow>● <lgray>Actual: </lgray>%zone_name%</lyellow>'
-        - ''
-        - <lyellow>[▶]</lyellow> <lgray>Click para <lyellow>cambiar</lyellow>.</lgray>
+      - '<lyellow>● <lgray>Actual: </lgray>%zone_name%</lyellow>'
+      - ''
+      - <lyellow>[▶]</lyellow> <lgray>Click para <lyellow>cambiar</lyellow>.</lgray>
     Description:
       Name: <lyellow><b>Descripción</b></lyellow>
       Lore:
-        - '%zone_description%'
-        - ''
-        - <lyellow>[▶]</lyellow> <lgray>Click Izquierdo para <lyellow>añadir línea</lyellow>.</lgray>
-        - <lyellow>[▶]</lyellow> <lgray>Click Derecho para <lyellow>eliminar la última</lyellow>.</lgray>
-        - <lyellow>[▶]</lyellow> <lgray>Tecla [Q / Botar] para <lyellow>reestablecer todo</lyellow>.</lgray>
+      - '%zone_description%'
+      - ''
+      - <lyellow>[▶]</lyellow> <lgray>Click Izquierdo para <lyellow>añadir línea</lyellow>.</lgray>
+      - <lyellow>[▶]</lyellow> <lgray>Click Derecho para <lyellow>eliminar la última</lyellow>.</lgray>
+      - <lyellow>[▶]</lyellow> <lgray>Tecla [Q / Botar] para <lyellow>reestablecer todo</lyellow>.</lgray>
     LinkedJob:
       Name: <lyellow><b>Trabajo Enlazado</b></lyellow>
       Lore:
-        - '%zone_inspect_zone_job%'
-        - ''
-        - '<lyellow>● <lgray>Actual: </lgray>%zone_job_name%</lyellow>'
-        - ''
-        - <lgray>Enlaza el trabajo con la zona.</lgray>
-        - ''
-        - <lyellow>[▶]</lyellow> <lgray>Click para <lyellow>cambiar</lyellow>.</lgray>
+      - '%zone_inspect_zone_job%'
+      - ''
+      - '<lyellow>● <lgray>Actual: </lgray>%zone_job_name%</lyellow>'
+      - ''
+      - <lgray>Enlaza el trabajo con la zona.</lgray>
+      - ''
+      - <lyellow>[▶]</lyellow> <lgray>Click para <lyellow>cambiar</lyellow>.</lgray>
     JobLevel:
       Name: <lyellow><b>Niveles de Trabajo</b></lyellow>
       Lore:
-        - '<lyellow>● <lgray>Mín: </lgray>%zone_job_min_level%</lyellow>'
-        - '<lyellow>● <lgray>Máx: </lgray>%zone_job_max_level%</lyellow>'
-        - ''
-        - <lgray>Establece los niveles de trabajo requeridos</lgray>
-        - <lgray>para tener acceso a esta zona.</lgray>
-        - ''
-        - <lyellow>[▶]</lyellow> <lgray>Click para <lyellow>cambiar</lyellow>.</lgray>
-        - <lyellow>[▶]</lyellow> <lgray>Tecla [Q / Botar] para <lyellow>desactivar</lyellow>.</lgray>
+      - '<lyellow>● <lgray>Mín: </lgray>%zone_job_min_level%</lyellow>'
+      - '<lyellow>● <lgray>Máx: </lgray>%zone_job_max_level%</lyellow>'
+      - ''
+      - <lgray>Establece los niveles de trabajo requeridos</lgray>
+      - <lgray>para tener acceso a esta zona.</lgray>
+      - ''
+      - <lyellow>[▶]</lyellow> <lgray>Click para <lyellow>cambiar</lyellow>.</lgray>
+      - <lyellow>[▶]</lyellow> <lgray>Tecla [Q / Botar] para <lyellow>desactivar</lyellow>.</lgray>
     PermissionRequired:
       Name: <lyellow><b>Requisito de Permisos</b></lyellow>
       Lore:
-        - '<lyellow>● <lgray>Activado: </lgray>%zone_permission_required%</lyellow>'
-        - '<lyellow>● <lgray>Permiso: </lgray>%zone_permission%</lyellow>'
-        - ''
-        - <lgray>Establece si es que los jugadores</lgray>
-        - <lgray>necesitan o no permiso para</lgray>
-        - <lgray>tener acceso a esta zona.</lgray>
-        - ''
-        - <lyellow>[▶]</lyellow> <lgray>Click para <lyellow>alternar</lyellow>.</lgray>
+      - '<lyellow>● <lgray>Activado: </lgray>%zone_permission_required%</lyellow>'
+      - '<lyellow>● <lgray>Permiso: </lgray>%zone_permission%</lyellow>'
+      - ''
+      - <lgray>Establece si es que los jugadores</lgray>
+      - <lgray>necesitan o no permiso para</lgray>
+      - <lgray>tener acceso a esta zona.</lgray>
+      - ''
+      - <lyellow>[▶]</lyellow> <lgray>Click para <lyellow>alternar</lyellow>.</lgray>
     PvPAllowed:
       Name: <lyellow><b>PvP Permitido</b></lyellow>
       Lore:
-        - '<lyellow>● <lgray>Activado: </lgray>%zone_pvp_allowed%</lyellow>'
-        - ''
-        - <lgray>Establece si es que los jugadores</lgray>
-        - <lgray>pueden o no dañarse mutuamente</lgray>
-        - <lgray>en esta zona.</lgray>
-        - ''
-        - <lyellow>[▶]</lyellow> <lgray>Click para <lyellow>alternar</lyellow>.</lgray>
+      - '<lyellow>● <lgray>Activado: </lgray>%zone_pvp_allowed%</lyellow>'
+      - ''
+      - <lgray>Establece si es que los jugadores</lgray>
+      - <lgray>pueden o no dañarse mutuamente</lgray>
+      - <lgray>en esta zona.</lgray>
+      - ''
+      - <lyellow>[▶]</lyellow> <lgray>Click para <lyellow>alternar</lyellow>.</lgray>
     DisabledBlockInteractions:
       Name: <lyellow><b>Interacciones de Bloques Desactivadas</b></lyellow>
       Lore:
-        - '%zone_disabled_block_interactions%'
-        - ''
-        - <lgray>Previene a los jugadores de interactuar</lgray>
-        - <lgray>con los tipos de bloques especificados.</lgray>
-        - ''
-        - <lyellow>[▶]</lyellow> <lgray>Click Izquierdo para <lyellow>añadir bloque</lyellow>.</lgray>
-        - <lyellow>[▶]</lyellow> <lgray>Tecla [Q / Botar] para <lyellow>remover todo</lyellow>.</lgray>
+      - '%zone_disabled_block_interactions%'
+      - ''
+      - <lgray>Previene a los jugadores de interactuar</lgray>
+      - <lgray>con los tipos de bloques especificados.</lgray>
+      - ''
+      - <lyellow>[▶]</lyellow> <lgray>Click Izquierdo para <lyellow>añadir bloque</lyellow>.</lgray>
+      - <lyellow>[▶]</lyellow> <lgray>Tecla [Q / Botar] para <lyellow>remover todo</lyellow>.</lgray>
     OpenTimes:
       Name: <lyellow><b>Tiempo de Apertura</b></lyellow>
       Lore:
-        - <lgray>Establece el tiempo del día en el que esta</lgray>
-        - <lgray>zona está disponible para los jugadores.</lgray>
-        - ''
-        - <lyellow>[▶]</lyellow> <lgray>Click para <lyellow>navegar</lyellow>.</lgray>
-        - <lyellow>[▶]</lyellow> <lgray>Tecla [Q / Botar] para <lyellow>desactivar</lyellow>.</lgray>
+      - <lgray>Establece el tiempo del día en el que esta</lgray>
+      - <lgray>zona está disponible para los jugadores.</lgray>
+      - ''
+      - <lyellow>[▶]</lyellow> <lgray>Click para <lyellow>navegar</lyellow>.</lgray>
+      - <lyellow>[▶]</lyellow> <lgray>Tecla [Q / Botar] para <lyellow>desactivar</lyellow>.</lgray>
     Modifiers:
       Name: <lyellow><b>Modificadores</b></lyellow>
       Lore:
-        - <lgray>Ajustar las cantidades de dinero y EXP</lgray>
-        - <lgray>que los jugadores obtendrán al trabajar</lgray>
-        - <lgray>en esta zona.</lgray>
-        - ''
-        - <lyellow>[▶]</lyellow> <lgray>Click para <lyellow>navegar</lyellow>.</lgray>
+      - <lgray>Ajustar las cantidades de dinero y EXP</lgray>
+      - <lgray>que los jugadores obtendrán al trabajar</lgray>
+      - <lgray>en esta zona.</lgray>
+      - ''
+      - <lyellow>[▶]</lyellow> <lgray>Click para <lyellow>navegar</lyellow>.</lgray>
     Time:
       Object:
         Name: <lyellow><b>%name%</b></lyellow>
         Lore:
-          - '%value%'
-          - ''
-          - <lyellow>[▶]</lyellow> <lgray>Click Izquierdo para <lyellow>añadir tiempo</lyellow>.</lgray>
-          - <lyellow>[▶]</lyellow> <lgray>Click Derecho para <lyellow>remover el último</lyellow>.</lgray>
-          - <lyellow>[▶]</lyellow> <lgray>Tecla [Q / Botar] para <lyellow>remover todo</lyellow>.</lgray>
+        - '%value%'
+        - ''
+        - <lyellow>[▶]</lyellow> <lgray>Click Izquierdo para <lyellow>añadir tiempo</lyellow>.</lgray>
+        - <lyellow>[▶]</lyellow> <lgray>Click Derecho para <lyellow>remover el último</lyellow>.</lgray>
+        - <lyellow>[▶]</lyellow> <lgray>Tecla [Q / Botar] para <lyellow>remover todo</lyellow>.</lgray>
     Modifier:
       Currency_Create:
         Name: <lyellow><b>Nuevo Modificador de Divisa</b></lyellow>
@@ -453,44 +541,44 @@ Editor:
       XP_Object:
         Name: <lyellow><b>Modificador de la EXP del Trabajo</b></lyellow>
         Lore:
-          - '<lyellow>● <lgray>Valor Base: </lgray>%modifier_base%</lyellow>'
-          - '<lyellow>● <lgray>Por Nivel de Trabajo: </lgray>%modifier_per_level%</lyellow>'
-          - '<lyellow>● <lgray>Por Frecuencia de Aumento* / (Level Step): </lgray>%modifier_step%</lyellow>'
-          - '<lyellow>● <lgray>Acción: </lgray>%modifier_action%</lyellow>'
-          - ''
-          - <lgray>Ajusta la cantidad de EXP del trabajo que</lgray>
-          - <lgray>que un jugador puede obtener por su empleo en esta zona.</lgray>
-          - ''
-          - <lgray>El valor final debe ser un multiplicador simple:</lgray>
-          - <lgray><lyellow>0.5</lyellow> = <lgreen>+50%</lgreen></lgray>
-          - <lgray><lyellow>-0.25</lyellow> = <lred>-25%</lred></lgray>
-          - ''
-          - <lyellow>[▶]</lyellow> <lgray>Click para <lyellow>editar</lyellow>.</lgray>
+        - '<lyellow>● <lgray>Valor Base: </lgray>%modifier_base%</lyellow>'
+        - '<lyellow>● <lgray>Por Nivel de Trabajo: </lgray>%modifier_per_level%</lyellow>'
+        - '<lyellow>● <lgray>Por Frecuencia de Aumento* / (Level Step): </lgray>%modifier_step%</lyellow>'
+        - '<lyellow>● <lgray>Acción: </lgray>%modifier_action%</lyellow>'
+        - ''
+        - <lgray>Ajusta la cantidad de EXP del trabajo que</lgray>
+        - <lgray>que un jugador puede obtener por su empleo en esta zona.</lgray>
+        - ''
+        - <lgray>El valor final debe ser un multiplicador simple:</lgray>
+        - <lgray><lyellow>0.5</lyellow> = <lgreen>+50%</lgreen></lgray>
+        - <lgray><lyellow>-0.25</lyellow> = <lred>-25%</lred></lgray>
+        - ''
+        - <lyellow>[▶]</lyellow> <lgray>Click para <lyellow>editar</lyellow>.</lgray>
       Currency_Object:
         Name: <lyellow><b>Modificador del Pago - %currency_name%</b></lyellow>
         Lore:
-          - '<lyellow>● <lgray>Valor Base: </lgray>%modifier_base%</lyellow>'
-          - '<lyellow>● <lgray>Por Nivel de Trabajo: </lgray>%modifier_per_level%</lyellow>'
-          - '<lyellow>● <lgray>Por Frecuencia de Aumento* / (Level Step): </lgray>%modifier_step%</lyellow>'
-          - '<lyellow>● <lgray>Acción: </lgray>%modifier_action%</lyellow>'
-          - ''
-          - <lgray>Ajusta la cantidad de <lyellow>%currency_name%</lyellow> que un jugador</lgray>
-          - <lgray>puede obtener por su trabajo en esta zona.</lgray>
-          - ''
-          - <lgray>El valor final debe ser un multiplicador simple:</lgray>
-          - <lgray><lyellow>0.5</lyellow> = <lgreen>+50%</lgreen></lgray>
-          - <lgray><lyellow>-0.25</lyellow> = <lred>-25%</lred></lgray>
-          - ''
-          - <lyellow>[▶]</lyellow> <lgray>Click para <lyellow>editar</lyellow>.</lgray>
-          - <lyellow>[▶]</lyellow> <lgray>Tecla [Q / Botar] para <lyellow>eliminar <lred>(no deshacer)</lred></lyellow>.</lgray>
+        - '<lyellow>● <lgray>Valor Base: </lgray>%modifier_base%</lyellow>'
+        - '<lyellow>● <lgray>Por Nivel de Trabajo: </lgray>%modifier_per_level%</lyellow>'
+        - '<lyellow>● <lgray>Por Frecuencia de Aumento* / (Level Step): </lgray>%modifier_step%</lyellow>'
+        - '<lyellow>● <lgray>Acción: </lgray>%modifier_action%</lyellow>'
+        - ''
+        - <lgray>Ajusta la cantidad de <lyellow>%currency_name%</lyellow> que un jugador</lgray>
+        - <lgray>puede obtener por su trabajo en esta zona.</lgray>
+        - ''
+        - <lgray>El valor final debe ser un multiplicador simple:</lgray>
+        - <lgray><lyellow>0.5</lyellow> = <lgreen>+50%</lgreen></lgray>
+        - <lgray><lyellow>-0.25</lyellow> = <lred>-25%</lred></lgray>
+        - ''
+        - <lyellow>[▶]</lyellow> <lgray>Click para <lyellow>editar</lyellow>.</lgray>
+        - <lyellow>[▶]</lyellow> <lgray>Tecla [Q / Botar] para <lyellow>eliminar <lred>(no deshacer)</lred></lyellow>.</lgray>
     BlockLists:
       Name: <lyellow><b>Lista de Bloques</b></lyellow>
       Lore:
-        - <lgray>Aquí puedes crear listas de bloques</lgray>
-        - <lgray>permitidos para ser rotos por los jugadores</lgray>
-        - <lgray>con un intervalo de regeneración.</lgray>
-        - ''
-        - <lyellow>[▶]</lyellow> <lgray>Click para <lyellow>navegar</lyellow>.</lgray>
+      - <lgray>Aquí puedes crear listas de bloques</lgray>
+      - <lgray>permitidos para ser rotos por los jugadores</lgray>
+      - <lgray>con un intervalo de regeneración.</lgray>
+      - ''
+      - <lyellow>[▶]</lyellow> <lgray>Click para <lyellow>navegar</lyellow>.</lgray>
     BlockList:
       Create:
         Name: <lyellow><b>Nueva Lista de Bloques</b></lyellow>
@@ -498,82 +586,121 @@ Editor:
       Object:
         Name: '<lyellow><b>Lista de Bloques: <reset><white>%blocklist_id%</white></b></lyellow>'
         Lore:
-          - <lgray><lyellow><b>Bloques:</b></lyellow></lgray>
-          - '%blocklist_materials%'
-          - ''
-          - <lyellow>[▶]</lyellow> <lgray>Click para <lyellow>editar</lyellow>.</lgray>
-          - <lyellow>[▶]</lyellow> <lgray>Shift-Click Derecho para <lyellow>eliminar <lred>(no deshacer)</lred></lyellow>.</lgray>
+        - <lgray><lyellow><b>Bloques:</b></lyellow></lgray>
+        - '%blocklist_materials%'
+        - ''
+        - <lyellow>[▶]</lyellow> <lgray>Click para <lyellow>editar</lyellow>.</lgray>
+        - <lyellow>[▶]</lyellow> <lgray>Shift-Click Derecho para <lyellow>eliminar <lred>(no deshacer)</lred></lyellow>.</lgray>
       Materials:
         Name: <lyellow><b>Materiales</b></lyellow>
         Lore:
-          - <lgray>Los siguientes tipos de bloques</lgray>
-          - <lgray>están permitidos para ser rotos por jugadores:</lgray>
-          - '%blocklist_materials%'
-          - ''
-          - <lyellow>[▶]</lyellow> <lgray>Click Izquierdo para <lyellow>añadir material</lyellow>.</lgray>
-          - <lyellow>[▶]</lyellow> <lgray>Click Derecho para <lyellow>remover todo</lyellow>.</lgray>
+        - <lgray>Los siguientes tipos de bloques</lgray>
+        - <lgray>están permitidos para ser rotos por jugadores:</lgray>
+        - '%blocklist_materials%'
+        - ''
+        - <lyellow>[▶]</lyellow> <lgray>Click Izquierdo para <lyellow>añadir material</lyellow>.</lgray>
+        - <lyellow>[▶]</lyellow> <lgray>Click Derecho para <lyellow>remover todo</lyellow>.</lgray>
       FallbackMaterial:
-        Name: <lyellow><b>Material Sustituto/b></lyellow>
+        Name: <lyellow><b>Material Sustituto</b></lyellow>
         Lore:
-          - <lgray>Los bloques rotos serán reemplazados por el</lgray>
-          - <lgray>el material especificado hasta ser restituidos.</lgray>
-          - ''
-          - '%blocklist_fallback_material%'
-          - ''
-          - <lyellow>[▶]</lyellow> <lgray>Click Izquierdo para <lyellow>cambiar</lyellow>.</lgray>
+        - <lgray>Los bloques rotos serán reemplazados por el</lgray>
+        - <lgray>el material especificado hasta ser restituidos.</lgray>
+        - ''
+        - '%blocklist_fallback_material%'
+        - ''
+        - <lyellow>[▶]</lyellow> <lgray>Click Izquierdo para <lyellow>cambiar</lyellow>.</lgray>
       ResetTime:
-        Name: <lyellow><b>Reestablecer Tiempo/b></lyellow>
+        Name: <lyellow><b>Reestablecer Tiempo</b></lyellow>
         Lore:
-          - <lgray>Establece cuan pronto (en segundos) los bloques rotos</lgray>
-          - <lgray>serán regenerados a sus materiales originales</lgray>
-          - ''
-          - '%blocklist_reset_time%'
-          - ''
-          - <lyellow>[▶]</lyellow> <lgray>Click Izquierdo para<lyellow>cambiar</lyellow>.</lgray>
+        - <lgray>Establece cuan pronto (en segundos) los bloques rotos</lgray>
+        - <lgray>serán regenerados a sus materiales originales</lgray>
+        - ''
+        - '%blocklist_reset_time%'
+        - ''
+        - <lyellow>[▶]</lyellow> <lgray>Click Izquierdo para <lyellow>cambiar</lyellow>.</lgray>
       DropItems:
         Name: <lyellow><b>Dropeo de Items</b></lyellow>
         Lore:
-          - <lgray>Establece si los bloques rotos</lgray>
-          - <lgray>van a dropear items o no.</lgray>
-          - ''
-          - '%blocklist_drop_items%'
-          - ''
-          - <lyellow>[▶]</lyellow> <lgray>Click para <lyellow>alternar</lyellow>.</lgray>
+        - <lgray>Establece si los bloques rotos</lgray>
+        - <lgray>van a dropear items o no.</lgray>
+        - ''
+        - '%blocklist_drop_items%'
+        - ''
+        - <lyellow>[▶]</lyellow> <lgray>Click para <lyellow>alternar</lyellow>.</lgray>
   Modifier:
     Base:
       Name: <lyellow><b>Valor Base</b></lyellow>
       Lore:
-        - '<lyellow>● <lgray>Actuak: </lgray>%modifier_base%</lyellow>'
-        - ''
-        - <lgray>Valor del modificador base (inicial).</lgray>
-        - ''
-        - <lyellow>[▶]</lyellow> <lgray>Click para <lyellow>cambiar</lyellow>.</lgray>
+      - '<lyellow>● <lgray>Actual: </lgray>%modifier_base%</lyellow>'
+      - ''
+      - <lgray>Valor del modificador base (inicial).</lgray>
+      - ''
+      - <lyellow>[▶]</lyellow> <lgray>Click para <lyellow>cambiar</lyellow>.</lgray>
     PerLevel:
       Name: <lyellow><b>Valor por Nivel</b></lyellow>
       Lore:
-        - '<lyellow>● <lgray>Actual: </lgray>%modifier_per_level%</lyellow>'
-        - ''
-        - <lgray>El número incrementa por sí mismo</lgray>
-        - <lgray>por cada <lyellow><Step></lyellow> niveles de trabajo.</lgray>
-        - ''
-        - <lgray>En donde <lyellow><Step></lyellow> es la <lyellow>Frecuencia de Aumento</lyellow>.</lgray>
-        - ''
-        - <lyellow>[▶]</lyellow> <lgray>Click para <lyellow>cambiar</lyellow>.</lgray>
+      - '<lyellow>● <lgray>Actual: </lgray>%modifier_per_level%</lyellow>'
+      - ''
+      - <lgray>El número incrementa por sí mismo</lgray>
+      - <lgray>por cada <lyellow><Step></lyellow> niveles de trabajo.</lgray>
+      - ''
+      - <lgray>En donde <lyellow><Step></lyellow> es la <lyellow>Frecuencia de Aumento</lyellow>.</lgray>
+      - ''
+      - <lyellow>[▶]</lyellow> <lgray>Click para <lyellow>cambiar</lyellow>.</lgray>
     Step:
       Name: <lyellow><b>Frecuencia de Aumento</b></lyellow>
       Lore:
-        - '<lyellow>● <lgray>Actual: </lgray>%modifier_step%</lyellow>'
-        - ''
-        - <lgray>Determina la frecuencia con la que el <lyellow>Valor por Nivel</lyellow></lgray>
-        - <lgray>debe aumentar en los niveles de trabajo.</lgray>
-        - ''
-        - <lyellow>[▶]</lyellow> <lgray>Click para <lyellow>cambiar</lyellow>.</lgray>
+      - '<lyellow>● <lgray>Actual: </lgray>%modifier_step%</lyellow>'
+      - ''
+      - <lgray>Determina la frecuencia con la que el <lyellow>Valor por Nivel</lyellow></lgray>
+      - <lgray>debe aumentar en los niveles de trabajo.</lgray>
+      - ''
+      - <lyellow>[▶]</lyellow> <lgray>Click para <lyellow>cambiar</lyellow>.</lgray>
     Action:
       Name: <lyellow><b>Acción</b></lyellow>
       Lore:
-        - '<lyellow>● <lgray>Actual: </lgray>%modifier_action%</lyellow>'
-        - ''
-        - <lgray>Determina la acción matemática</lgray>
-        - <lgray>entre los valores <lyellow>Base</lyellow> y <lyellow>Por Nivel</lyellow>.</lgray>
-        - ''
-        - <lyellow>[▶]</lyellow> <lgray>Click para <lyellow>alternar</lyellow>.</lgray>
+      - '<lyellow>● <lgray>Actual: </lgray>%modifier_action%</lyellow>'
+      - ''
+      - <lgray>Determina la acción matemática</lgray>
+      - <lgray>entre los valores <lyellow>Base</lyellow> y <lyellow>Por Nivel</lyellow>.</lgray>
+      - ''
+      - <lyellow>[▶]</lyellow> <lgray>Click para <lyellow>alternar</lyellow>.</lgray>
+BoosterType:
+  PERSONAL: Personal
+  GLOBAL: Global
+  RANK: Rank
+Dialog:
+  Generic:
+    Button:
+      Back:
+        Label: <soft_yellow>←</soft_yellow> Atrás
+        Width: 150
+  JobStatus:
+    Title: <soft_yellow><b><u>Estado del Trabajo</u></b></soft_yellow>
+    Body:
+      Contents:
+      - Selecciona un nuevo estado para el trabajo <soft_yellow>%job_name%</soft_yellow>.
+      - ''
+      - 'Estado Actual: <soft_yellow>%job_state%</soft_yellow>'
+      - ''
+      - Los trabajos <green>Primarios</green> dan recompensas extra, pero <green>menores</green>, de ingresos y niveles.
+      - ''
+      - Los trabajos <soft_blue>Secundarios</soft_blue> dan las recompensas <soft_blue>más altas</soft_blue> de ingresos y niveles.
+      Width: 400
+    Button:
+      GetPrimary:
+        Label: <green>✔</green> Obtener como Primario
+        Width: 150
+      GetSecondary:
+        Label: <blue>✔</blue> Obtener como Secundario
+        Width: 150
+      Leave:
+        Label: <red>✘</red> Dejar Trabajo
+        Width: 150
+Other:
+  NoJobs: <gray><Sin Trabajos></gray>
+  NoIncome: <gray>$0</gray>
+  JobDelimiter: ', '
+  CurrencyDelimiter: ', '
+  BonusPlus: <green>+%value%%</green>
+  BonusMinus: <red>%value%%</red>
